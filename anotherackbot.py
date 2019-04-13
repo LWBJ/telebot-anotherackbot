@@ -12,22 +12,12 @@ def ack(bot, update):
   if info[2] == "":
     update.message.reply_text(text="Please add a message after /ack!")
   else:
-    new_message = info[2] + "\n \n" + "<b>Names:</b>"
+    new_message = info[2] + "\n \n" + "*Names:*"
   
     keyboard = [InlineKeyboardButton("Acknowledged", callback_data=1)],
     reply_markup = InlineKeyboardMarkup(keyboard)
 
-    update.message.reply_text(text=new_message, reply_markup=reply_markup, parse_mode="HTML")
-
-def insertbold(mess):
-  i = 0
-  while i < len(mess):
-    if mess[i:i+6] == "Names:":
-      s1 = mess[:i]
-      s2 = mess[i+6:]
-      new_mess = s1 + "<b>Names:</b>" + s2
-    i+=1
-  return new_mess
+    update.message.reply_text(text=new_message, reply_markup=reply_markup, parse_mode="MARKDOWN")
 
 def button(bot, update):
   #The button creates an updated message and recreates the same inline keyboard
@@ -36,7 +26,7 @@ def button(bot, update):
   #Else, the message is updated with a new name and a notification is sent out
   
   query = update.callback_query
-  og_message = query.message.text
+  og_message = query.message.text_markdown
   
   keyboard = [InlineKeyboardButton("Yes sir", callback_data=1)],
   same_markup = InlineKeyboardMarkup(keyboard)
@@ -47,7 +37,7 @@ def button(bot, update):
     query.answer(text="Response already recorded!")
   else:
     new_message = og_message + "\n" + new_name 
-    query.edit_message_text(reply_markup=same_markup, text=insertbold(new_message), parse_mode="HTML")
+    query.edit_message_text(reply_markup=same_markup, text=new_message, parse_mode="MARKDOWN")
     query.answer(text="Thank you for your response!")
 
 def start(bot, update):
