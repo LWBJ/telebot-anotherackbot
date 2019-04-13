@@ -47,7 +47,7 @@ def button(bot, update):
     query.answer(text="Response already recorded!")
   else:
     new_message = og_message + "\n" + new_name 
-    query.edit_message_text(reply_markup=same_markup, text=insertbold(new_message))
+    query.edit_message_text(reply_markup=same_markup, text=insertbold(new_message), parse_mode="HTML")
     query.answer(text="Thank you for your response!")
 
 def start(bot, update):
