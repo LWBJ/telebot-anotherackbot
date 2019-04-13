@@ -17,7 +17,7 @@ def ack(bot, update):
     keyboard = [InlineKeyboardButton("Acknowledged", callback_data=1)],
     reply_markup = InlineKeyboardMarkup(keyboard)
 
-    update.message.reply_text(text=new_message,reply_markup=reply_markup)
+    update.message.reply_text(text=new_message, reply_markup=reply_markup)
 
 def button(bot, update):
   #The button creates an updated message and recreates the same inline keyboard
@@ -28,7 +28,7 @@ def button(bot, update):
   query = update.callback_query
   og_message = query.message.text
   
-  keyboard = [InlineKeyboardButton("Yes sir", callback_data=1)],
+  keyboard = [InlineKeyboardButton("Acknowledged", callback_data=1)],
   same_markup = InlineKeyboardMarkup(keyboard)
   
   new_name = query.from_user['username']
