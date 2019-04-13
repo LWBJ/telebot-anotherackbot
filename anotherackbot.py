@@ -45,7 +45,7 @@ def start(bot, update):
 
 def helpfunc(bot, update):
   the_message = """Available commands:
-/start - welcome messafe
+
 /help - this command
 /ack - starts a new acknowledgement list"""
   update.message.reply_text(text=the_message)
