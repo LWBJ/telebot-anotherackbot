@@ -7,7 +7,7 @@ def ack(bot, update):
   #Responds with a message containing the message, a header "names" and an inline keyboard
   #This message will be updated with new names every time the button is pressed
 
-  info = update.message.text.partition(' ')
+  info = update.message.text_markdown.partition(' ')
   
   if info[2] == "":
     update.message.reply_text(text="Please add a message after /ack!")
@@ -26,7 +26,8 @@ def button(bot, update):
   #Else, the message is updated with a new name and a notification is sent out
   
   query = update.callback_query
-  og_message = query.message.text_markdown
+  og_message = query.message.text
+  markdown_message = query.message.text_markdown
   
   keyboard = [InlineKeyboardButton("Yes sir", callback_data=1)],
   same_markup = InlineKeyboardMarkup(keyboard)
@@ -36,7 +37,7 @@ def button(bot, update):
   if new_name in og_message:
     query.answer(text="Response already recorded!")
   else:
-    new_message = og_message + "\n" + new_name 
+    new_message = markdown_message + "\n" + new_name 
     query.edit_message_text(reply_markup=same_markup, text=new_message, parse_mode="MARKDOWN")
     query.answer(text="Thank you for your response!")
 
