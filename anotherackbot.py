@@ -12,7 +12,7 @@ def ack(bot, update):
   if info[2] == "":
     update.message.reply_text(text="Please add a message after /ack!")
   else:
-    new_message = info[2] + "\n \n" + "Names:"
+    new_message = info[2] + "\n \n" + "Respondents:"
 
     keyboard = [InlineKeyboardButton("Acknowledged", callback_data=1)],
     reply_markup = InlineKeyboardMarkup(keyboard)
