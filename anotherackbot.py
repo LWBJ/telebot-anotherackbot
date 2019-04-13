@@ -13,8 +13,8 @@ def ack(bot, update):
     update.message.reply_text(text="Please add a message after /ack!")
   else:
     new_message = info[2] + "\n \n" + "Names:"
-  
-    keyboard = [InlineKeyboardButton("Yes sir", callback_data=1)],
+
+    keyboard = [InlineKeyboardButton("Acknowledged", callback_data=1)],
     reply_markup = InlineKeyboardMarkup(keyboard)
 
     update.message.reply_text(text=new_message,reply_markup=reply_markup)
