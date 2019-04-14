@@ -55,13 +55,17 @@ def button(bot, update):
     query.answer(text="Thank you for your response!")
 
 def start(bot, update):
-  update.message.reply_text(text="Hello! This is AnotherAckBot, a hobbyist recreation of acknowledgedbot, but with notifcations after a response.")
+  update.message.reply_text(text="Hello! This is AnotherAckBot, a hobbyist recreation of acknowledgedbot. I send notifications after a response and track the total number of responses.")
 
 def helpfunc(bot, update):
   the_message = """Available commands:
 
 /help - this command
-/ack - starts a new acknowledgement list"""
+/ack - starts a new ack list
+
+Add your message after a space following /ack. For example:
+
+/ack My message"""
   update.message.reply_text(text=the_message)
 
 def main():
