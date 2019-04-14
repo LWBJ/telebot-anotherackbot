@@ -12,12 +12,26 @@ def ack(bot, update):
   if info[2] == "":
     update.message.reply_text(text="Please add a message after /ack!")
   else:
-    new_message = info[2] + "\n \n" + "Respondents:"
+    new_message = info[2] + "\n\nRespondents:\n\nTotal: 0"
 
     keyboard = [InlineKeyboardButton("Acknowledged", callback_data=1)],
     reply_markup = InlineKeyboardMarkup(keyboard)
 
     update.message.reply_text(text=new_message, reply_markup=reply_markup)
+
+def messagechange(mes, new_name):
+  #Takes in original message and a new name to return a message with the new name, increase in total number and keep formatting
+  i = 1
+  new_mes=mes
+  while i <= len(mes):
+    reg = mes[-i:-i+9]
+    if reg == "\n\nTotal: ":
+      s1 = mes[:-i]
+      num = str(int(mes[-i+9:]) + 1)
+      new_mes = s1 + "\n" + new_name + reg + num
+      i = len(mes)      
+    i += 1
+  return new_mes    
 
 def button(bot, update):
   #The button creates an updated message and recreates the same inline keyboard
@@ -36,7 +50,7 @@ def button(bot, update):
   if new_name in og_message:
     query.answer(text="Response already recorded!")
   else:
-    new_message = og_message + "\n" + new_name 
+    new_message = messagechange(og_message,new_name)
     query.edit_message_text(reply_markup=same_markup, text=new_message)
     query.answer(text="Thank you for your response!")
 
