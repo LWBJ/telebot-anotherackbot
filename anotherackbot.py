@@ -52,7 +52,7 @@ def button(bot, update):
     new_name = last_name
   elif last_name is None:
     new_name = first_name
-  else
+  else:
     new_name = first_name + last_name
   
   if new_name in og_message:
