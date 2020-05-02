@@ -46,7 +46,14 @@ def button(bot, update):
   keyboard = [InlineKeyboardButton("Acknowledged", callback_data=1)],
   same_markup = InlineKeyboardMarkup(keyboard)
   
-  new_name = query.from_user.first_name + ' ' + query.from_user.last_name
+  first_name = query.from_user.first_name
+  last_name = query.from_user.last_name
+  if first_name is None:
+    new_name = last_name
+  elif last_name is None:
+    new_name = first_name
+  else
+    new_name = first_name + last_name
   
   if new_name in og_message:
     query.answer(text="Response already recorded!")
