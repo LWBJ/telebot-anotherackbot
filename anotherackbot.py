@@ -21,6 +21,7 @@ def ack(bot, update):
 
 def messagechange(mes, new_name):
   #Takes in original message and a new name to return a message with the new name, increase in total number and keep formatting
+
   i = 1
   new_mes=mes
   while i <= len(mes):
@@ -69,8 +70,8 @@ Add your message after a space following /ack. For example:
   update.message.reply_text(text=the_message)
 
 def main():
-  TOKEN = "889614406:AAHNg6ZfWsew8QCPyUoHwxlUYcQKGOfdwSY"
-  NAME = "jpanotherackbot"
+  TOKEN = os.environ.get('API_KEY','')
+  NAME = "anotherackbot"
   PORT = os.environ.get('PORT')
   
   updater = Updater(token=TOKEN)
