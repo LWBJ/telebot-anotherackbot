@@ -11,6 +11,7 @@ def ack(bot, update):
   
   if info[2] == "":
     update.message.reply_text(text="Please add a message after /ack!")
+    sendEndOfLifeNotice(update)
   else:
     new_message = info[2] + "\n\nRespondents:\n\nTotal: 0"
 
