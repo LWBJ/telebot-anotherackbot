@@ -11,7 +11,6 @@ def ack(bot, update):
   
   if info[2] == "":
     update.message.reply_text(text="Please add a message after /ack!")
-    sendEndOfLifeNotice(update)
   else:
     new_message = info[2] + "\n\nRespondents:\n\nTotal: 0"
 
@@ -19,7 +18,8 @@ def ack(bot, update):
     reply_markup = InlineKeyboardMarkup(keyboard)
 
     update.message.reply_text(text=new_message, reply_markup=reply_markup)
-    sendEndOfLifeNotice(update)
+    
+  sendEndOfLifeNotice(update)
 
 def messagechange(mes, new_name):
   #Takes in original message and a new name to return a message with the new name, increase in total number and keep formatting
