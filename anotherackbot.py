@@ -18,6 +18,7 @@ def ack(bot, update):
     reply_markup = InlineKeyboardMarkup(keyboard)
 
     update.message.reply_text(text=new_message, reply_markup=reply_markup)
+    sendEndOfLifeNotice(update)
 
 def messagechange(mes, new_name):
   #Takes in original message and a new name to return a message with the new name, increase in total number and keep formatting
@@ -64,6 +65,7 @@ def button(bot, update):
 
 def start(bot, update):
   update.message.reply_text(text="Hello! This is AnotherAckBot, a hobbyist recreation of acknowledgedbot. I send notifications after a response and track the total number of responses.")
+  sendEndOfLifeNotice(update)
 
 def helpfunc(bot, update):
   the_message = """Available commands:
@@ -75,6 +77,7 @@ Add your message after a space following /ack. For example:
 
 /ack My message"""
   update.message.reply_text(text=the_message)
+  sendEndOfLifeNotice(update)
 
 def main():
   TOKEN = os.environ.get('API_KEY','')
@@ -95,3 +98,12 @@ def main():
   
 if __name__ == "__main__":
   main()
+
+#------------------------------------End of Life Notice---------------------------------------------
+def sendEndOfLifeNotice(update):
+    message = """
+        **END OF LIFE NOTICE**
+
+This bot runs on heroku's free tier. Heroku's free tier is expiring in Nov 2022, hence the bot will cease to function then.
+    """
+    update.message.reply_text(text=message)
